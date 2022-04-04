@@ -23,3 +23,32 @@ public:
         return ans;
     }
 };
+
+
+// below solution is better solution
+// O(n) TC and O(1) space
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        
+        int ans=nums[0];
+        
+        int count=1;
+        
+        for(int i= 1;i<nums.size();i++){
+            if(count==0){
+                ans = nums[i];
+                count++;
+            }
+            else if(ans==nums[i])
+                count++;
+            else
+                count--;
+        }
+        
+        
+        
+        return ans;
+    }
+};
