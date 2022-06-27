@@ -50,3 +50,38 @@ public:
       
     }
 };
+
+// above is chapri method 
+// below one is standrad method
+
+class Solution {
+    public:
+    void pascal (int n , vector<vector<int>> &v){
+        if(n==1){
+            v[n-1].push_back(1);
+            return ;
+        }
+        pascal(n-1,v);
+        
+        for(int i=0;i<n;i++){
+            if(i==0 || i==n-1){
+                v[n-1].push_back(1);
+            }
+            else{
+                v[n-1].push_back(v[n-2][i]+v[n-2][i-1]);
+            }
+        }
+        return ;
+    }
+    
+public:
+    vector<vector<int>> generate(int numRows) {
+        
+        vector<vector<int>> ans(numRows);
+        
+        pascal(numRows, ans);
+        
+        
+        return ans;
+    }
+};
