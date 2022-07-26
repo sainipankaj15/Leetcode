@@ -32,3 +32,46 @@ public:
 
 
 // Above method is brute force type i wrote what i think but we can imnprove becuase in above process we are taking more space 
+
+class Solution
+{
+public:
+    int pairSum(ListNode *head)
+    {
+
+        ListNode *slow = head, *fast = head;
+
+        while (fast->next && fast->next->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        // came middle in the list
+        ListNode *curr = NULL, *temp = NULL, *prev = NULL;
+
+        temp = slow->next;
+        while (temp)
+        {
+            prev = curr;
+            curr = temp;
+            temp = temp->next;
+            curr->next = prev;
+        }
+        // rotated the list
+        slow->next = curr;
+
+        ListNode *start = head, *mid = slow->next;
+
+        int ans = 0;
+
+        // checking from start+from mid
+        while (mid)
+        {
+            ans = max(ans, start->val + mid->val);
+            mid = mid->next;
+            start = start->next;
+        }
+
+        return ans;
+    }
+};

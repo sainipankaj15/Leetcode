@@ -30,3 +30,23 @@ public:
         
     }
 };
+
+
+// second method without using extra space
+// using three pointer 
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *previous=NULL,*current=NULL,*forward=head;
+        
+        while(forward!=NULL){
+            previous = current ;
+            current = forward;
+            forward = forward->next;
+            current->next = previous;
+        }
+        
+        return current;
+    }
+};
