@@ -49,3 +49,45 @@ public:
         return p.top();
     }
 };
+
+
+// In above method I used linkedlist and priorty_queue
+// so linkedlist is okay here pop and push are O(1) but prioruty queue takes log(n) for insertion so in worst case it will take O(N.logN)
+// so below method using 2 stacks
+
+class MinStack
+{
+public:
+    stack<int> s1;
+    stack<int> p;
+    MinStack()
+    {
+    }
+
+    void push(int val)
+    {
+
+        s1.push(val);
+        if (p.size() == 0 || val <= p.top())
+            p.push(val);
+    }
+
+    void pop()
+    {
+
+        if (s1.top() == p.top())
+            p.pop();
+        s1.pop();
+    }
+
+    int top()
+    {
+
+        return s1.top();
+    }
+
+    int getMin()
+    {
+        return p.top();
+    }
+};
